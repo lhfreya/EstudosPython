@@ -1,39 +1,36 @@
 import psycopg2
 
+
 def select():
 
+   # Conecta no Banco de Dados
 
-
- try:
-
-    # Conecta no Banco de Dados#
-  conector = psycopg2.connect(
-        database='Enterprise',
-        user='postgres',
-        password='pgadmin1234',
-        host='127.0.0.1',
-        port='5090')
-
-
- except Exception as erro:
-
-    print('Não foi possivel conectar com servidor', erro)
-
+   conector = psycopg2.connect(
+      database='fitmuscle',
+      user='postgres',
+      password='pgadmin123',
+      host='localhost',
+      port='5432')
 
 
 
   # Cria a Query
- cur = conector.cursor()
- cur.execute("SELECT nome, cpf, cargo FROM proprietarios")
- dado = cur.fetchall()
+   cur = conector.cursor()
 
- # Mostra resultados do SELECT #
- print(dado)
- for dado in dado:
-  print("nome =", dado[0])
-  print("cpf =", dado[1])
-  print("cargo =", dado[2])
+   cur.execute("SELECT*FROM clientes")
+   dado = cur.fetchall()
 
- conector.close()
+# Mostra resultados do SELECT #
+   print(dado)
+
+   for dado in dado:
+      print("Cliente =", dado[0],"CPF =", dado[1],"Inscrição =", dado[2],"Peso =", dado[3], "Modalidade =", dado[4])
+
+
+
+
+
+
+   conector.close()
 
 select()
