@@ -4,7 +4,7 @@ import json
 def consumomarvel(dicionario):
 
     
-    #try:
+    try:
     
         req = requests.get('https://gateway.marvel.com/v1/public/characters?limit=100&ts=1609890812920&apikey={SUAPUBLICKEY}&hash={SUAHASH}')
         dicionario = json.loads(req.text)
@@ -14,9 +14,9 @@ def consumomarvel(dicionario):
         
         
 
-    #except:
+    except:
 
-        #print('Erro ao estabelecer conexão!')
+        print('Erro ao estabelecer conexão!')
         
 
 
@@ -24,7 +24,8 @@ def personagemwiki (Character, nome_personagem):
     
     for personagem in Character :
         if (personagem["name"] == nome_personagem):
-            print(personagem['description'])
+            print('nome:'+personagem['name'])
+            print('Descrição:'+personagem['description'])
             break
 
 
